@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Mi Amor, SAR ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(180deg, #ffe6ef, #f9d6e5);
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* --- MENSAJE INICIAL --- */
+    #mensaje-inicial {
+      background-color: #fff;
+      padding: 45px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      max-width: 420px;
+      transition: opacity 0.5s ease-in-out, transform 0.5s;
+      animation: aparecer 1s ease forwards;
+      z-index: 10;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .cita {
+      font-size: 1.1em;
+      margin-bottom: 25px;
+      line-height: 1.6;
+      color: #5a3557;
+    }
+
+    #abrir-regalo {
+      padding: 12px 30px;
+      font-size: 1.1em;
+      background: linear-gradient(90deg, #ff6fb3, #ff95c8);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+
+    #abrir-regalo:hover {
+      background: linear-gradient(90deg, #ff7fc0, #ffa5d0);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(255, 105, 180, 0.5);
+    }
+
+    /* --- CONTENEDOR DEL RAMO --- */
+    #ramo-contenedor {
+      display: none;
+      opacity: 0;
+      flex-direction: column;
+      align-items: center;
+      transition: opacity 1s ease-in-out;
+      padding: 20px;
+      max-width: 450px;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- DEDICATORIA --- */
+    #dedicatoria {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2em;
+      color: #7b1a56;
+      margin-top: 30px;
+      padding: 15px;
+      border-top: 2px solid #ff85c1;
+      line-height: 1.4;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    /* --- RAMO --- */
+    #tulipan-ramo {
+      position: relative;
+      width: 250px;
+      height: 350px;
+      animation: flotar 3s ease-in-out infinite;
+    }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    #tulipan-ramo::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 200px;
+      background-color: #79ac78;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      z-index: 1;
+    }
+
+    /* --- FLORES --- */
+    #tulipan-ramo::after {
+      content: '';
+      position: absolute;
+      top: 90px;
+      left: 50%;
+      transform: translateX(-50%) scaleY(0);
+      width: 80px;
+      height: 100px;
+      background: radial-gradient(circle at top, #ffb6d0 0%, #f48fb1 100%);
+      border-radius: 50% 50% 20% 20%;
+      z-index: 2;
+      opacity: 0;
+      animation: florecer 1s ease forwards;
+      animation-delay: 1s;
+    }
+
+    .tulipan-flor-extra {
+      position: absolute;
+      width: 60px;
+      height: 80px;
+      background: radial-gradient(circle at top, #ffb6d0 0%, #f48fb1 100%);
+      border-radius: 50% 50% 20% 20%;
+      z-index: 2;
+      transform: scaleY(0);
+      opacity: 0;
+      animation: florecer 1s ease forwards;
+    }
+
+    .flor-izquierda {
+      top: 75px;
+      left: 65px;
+      transform-origin: bottom center;
+      animation-delay: 1.3s;
+    }
+
+    .flor-derecha {
+      top: 75px;
+      right: 65px;
+      transform-origin: bottom center;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes florecer {
+      to {
+        transform: scaleY(1);
+        opacity: 1;
+        filter: brightness(1.1);
+      }
+    }
+
+    /* --- HOJAS --- */
+    .tulipan-hoja {
+      position: absolute;
+      width: 20px;
+      height: 90px;
+      background-color: #a4c49a;
+      z-index: 1;
+      opacity: 0;
+      transform: scale(0.7);
+      animation: hojaSurge 1s ease forwards;
+    }
+
+    @keyframes hojaSurge {
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .hoja-izquierda {
+      border-radius: 0 50% 0 50%;
+      bottom: 100px;
+      left: 38%;
+      transform: rotate(25deg);
+      animation-delay: 1.6s;
+    }
+
+    .hoja-derecha {
+      border-radius: 50% 0 50% 0;
+      bottom: 80px;
+      right: 38%;
+      transform: rotate(-25deg);
+      animation-delay: 1.8s;
+    }
+
+    /* --- LLUVIA DE PÉTALOS Y CORAZONES --- */
+    .flotante {
+      position: fixed;
+      width: 16px;
+      height: 16px;
+      opacity: 0.8;
+      z-index: 0;
+      pointer-events: none;
+      animation: caer 8s linear infinite;
+    }
+
+    @keyframes caer {
+      0% { transform: translateY(-10px) rotate(0deg) scale(1); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg) scale(0.8); opacity: 0; }
+    }
+
+    .petalo {
+      background-color: rgba(255, 182, 193, 0.9);
+      border-radius: 50% 50% 0 50%;
+    }
+
+    .corazon::before,
+    .corazon::after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: rgba(255, 105, 180, 0.9);
+      border-radius: 50%;
+      top: 0;
+      left: 0;
+    }
+
+    .corazon::after { transform: rotate(-45deg); transform-origin: bottom right; }
+    .corazon::before { transform: rotate(45deg); transform-origin: bottom left; }
+
+    /* --- BOTÓN DE CANCIÓN --- */
+    #btn-cancion {
+      display: none;
+      margin-top: 20px;
+      padding: 10px 25px;
+      font-size: 1.1em;
+      background: linear-gradient(90deg, #ff7fc0, #ffa5d0);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+      transition: transform 0.2s;
+    }
+
+    #btn-cancion:hover {
+      transform: translateY(-2px);
+    }
+
+    #player {
+      display: none;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="mensaje-inicial">
+    <p class="cita">
+      “La <strong>distancia</strong> solo es una prueba de cuánto puede viajar el amor.  
+      Aunque es difícil, cada día lejos nos enseña el verdadero valor de estar juntos.  
+      <strong>Nuestro amor</strong> es más fuerte que cualquier kilómetro.”
+    </p>
+    <button id="abrir-regalo" onclick="mostrarRamo()">Abrir Regalo 💝</button>
+  </div>
+
+  <div id="ramo-contenedor">
+    <div id="tulipan-ramo">
+      <div class="tulipan-flor-extra flor-izquierda"></div>
+      <div class="tulipan-flor-extra flor-derecha"></div>
+      <div class="tulipan-hoja hoja-izquierda"></div>
+      <div class="tulipan-hoja hoja-derecha"></div>
+    </div>
+    <div id="dedicatoria">
+      “Con cariño de <strong>Gerson</strong> 🌸<br>
+      para <strong>SAR</strong>, mi esposa. <br>
+      <em>Te amo con todo mi corazón.</em> ❤️”
+    </div>
+
+    <button id="btn-cancion" onclick="reproducirCancion()">🎶 Te dedico esta canción</button>
+    <audio id="player" controls>
+  <source src="Eros Ramazzotti - Otra Como Tú (Letra _ Lyrics).mp3" type="audio/mpeg">
+  Tu navegador no soporta el reproductor de audio.
+</audio>
+
+  </div>
+
+  <script>
+    // 🌸 Lluvia inicial
+    function crearLluvia() {
+      for (let i = 0; i < 20; i++) {
+        const elem = document.createElement('div');
+        elem.classList.add('flotante');
+        elem.style.left = Math.random() * window.innerWidth + 'px';
+        elem.style.animationDelay = Math.random() * 8 + 's';
+        elem.style.animationDuration = 5 + Math.random() * 4 + 's';
+        elem.style.transform = `scale(${Math.random() * 0.8 + 0.5})`;
+
+        if (Math.random() > 0.5) elem.classList.add('petalo');
+        else elem.classList.add('corazon');
+
+        document.body.appendChild(elem);
+      }
+    }
+
+    crearLluvia();
+
+    // 💐 Mostrar ramo y sonido de floración
+    function mostrarRamo() {
+      const mensajeInicial = document.getElementById('mensaje-inicial');
+      mensajeInicial.style.opacity = '0';
+      mensajeInicial.style.transform = 'scale(0.9)';
+
+      setTimeout(() => {
+        mensajeInicial.style.display = 'none';
+        const ramoContenedor = document.getElementById('ramo-contenedor');
+        ramoContenedor.style.display = 'flex';
+        setTimeout(() => (ramoContenedor.style.opacity = '1'), 50);
+
+        // 🔔 Sonido de floración
+        const sonido = new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_6b560ce4a0.mp3?filename=magic-chime-43193.mp3');
+        sonido.volume = 0.5;
+        sonido.play();
+
+        // 🌸 Pétalos extra al florecer
+        for (let i = 0; i < 15; i++) {
+          const petalo = document.createElement('div');
+          petalo.classList.add('flotante', 'petalo');
+          petalo.style.left = Math.random() * window.innerWidth + 'px';
+          petalo.style.animationDelay = Math.random() * 5 + 's';
+          petalo.style.animationDuration = 5 + Math.random() * 3 + 's';
+          document.body.appendChild(petalo);
+        }
+
+        // 🎵 Mostrar botón de canción después de florecer
+        setTimeout(() => {
+          document.getElementById('btn-cancion').style.display = 'inline-block';
+        }, 2500);
+      }, 600);
+    }
+
+    // 🎶 Reproducir canción
+    function reproducirCancion() {
+      const player = document.getElementById('player');
+      player.style.display = 'block';
+      player.play();
+    }
+  </script>
+</body>
+</html>
